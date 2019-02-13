@@ -17,8 +17,7 @@ from sklearn.model_selection import train_test_split
 
 import numpy as np
 
-
-from sklearn.model_selection import train_test_split
+import mp3_to_npy_convertor
 
 song_samples = 660000
 #genres = {'metal': 0, 'disco': 1, 'classical': 2, 'hiphop': 3, 'jazz': 4,
@@ -31,7 +30,7 @@ def main():
     gtzan_dir = '../genres/'
     # gtzan_dir = args.directory
 
-    load_from_file = True
+    load_from_file = False
 
     x, y = None, None
     if load_from_file:
@@ -58,7 +57,7 @@ def main():
 
     model.fit(x_train, y_train,
               batch_size=32,
-              epochs=50,
+              epochs=5,
               verbose=1,
               validation_data=(x_test, y_test))
 
@@ -109,7 +108,7 @@ def build_model(songs):
     return model
 
 
-def read_data(src_dir, genres, song_samples, spec_format, debug = False):
+def read_data(src_dir, genres, song_samples, spec_format, debug=False):
     arr_specs = []
     arr_genres = []
 
@@ -179,4 +178,6 @@ if __name__ == '__main__':
     #     print('Please input directory for music data')
     #     exit()
 
-    main()
+    #main()
+    #mp3_to_npy_convertor.convert_files("C:\\Users\\kkr\\Desktop\\Thesis\\audio_A", "../npys/", 22050, 640512)
+    mp3_to_npy_convertor.convert_files("./", "../npys/", 22050, 640512)
